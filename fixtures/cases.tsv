@@ -1,0 +1,25 @@
+# id	kind	name (TSV escapes)	exists	cwd	hand_pre	hand_post
+# hand_pre/hand_post: token class after "-f", derived by hand from the GHSA argv and the diff
+p01_dash_h	pos	-h	1	/srv/uploads	OPTION	PATH
+p02_dnosafer	pos	-dNOSAFER.eps	1	/srv/uploads	OPTION	PATH
+p03_atfile	pos	@args.txt	1	/srv/uploads	ATFILE	PATH
+p04_double_dash	pos	--help	1	/srv/uploads	OPTION	PATH
+p05_lone_dash	pos	-	1	/srv/uploads	OPTION	PATH
+p06_soutputfile	pos	-sOutputFile=x.eps	1	/srv/uploads	OPTION	PATH
+p07_lone_at	pos	@	1	/srv/uploads	ATFILE	PATH
+p08_root_cwd	pos	-h	1	/	OPTION	PATH
+n01_plain	neg	image.eps	1	/srv/uploads	PATH	PATH
+n02_dot_slash	neg	./-h	1	/srv/uploads	PATH	PATH
+n03_absolute	neg	/data/-h.eps	1	/srv/uploads	PATH	PATH
+n04_space	neg	a b.eps	1	/srv/uploads	PATH	PATH
+n05_dotdot	neg	dir/../x.eps	1	/srv/uploads	PATH	PATH
+n06_no_name	neg		0	/srv/uploads	PATH	PATH
+n07_dash_missing	neg	-h	0	/srv/uploads	PATH	PATH
+n08_newline_first	neg	\n-h	1	/srv/uploads	PATH	PATH
+e01_two_slashes	edge	//net/x.eps	1	/srv/uploads	PATH	PATH
+e02_climb_root	edge	../../../../-h	1	/srv/uploads	PATH	PATH
+e03_three_slashes	edge	///x.eps	1	/srv/uploads	PATH	PATH
+e04_dot_segments	edge	x/./y/../-z	1	/srv/uploads/	PATH	PATH
+e05_dash_dir	edge	-d/x.eps	1	/srv/uploads	OPTION	PATH
+b01_relative_cwd	bad	-h	1	srv/uploads	BAD_INPUT	BAD_INPUT
+b02_empty_exists	bad		1	/srv/uploads	BAD_INPUT	BAD_INPUT
